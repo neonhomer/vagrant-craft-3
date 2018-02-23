@@ -1,3 +1,9 @@
-/*.log
-/.vagrant
+### Vagrant ###
+.vagrant/
+*.box
+
+# Ignore entire craft folder for now, this should be changed before saving actual project
 /craft
+
+# Ignore Ubuntu log file 
+/ubuntu*.log

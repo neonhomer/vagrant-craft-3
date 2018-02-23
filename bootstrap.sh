@@ -48,12 +48,15 @@ sudo mv composer.phar /usr/bin/composer
 # Install Craft CMS (if not already installed)
 if ! [ -f /vagrant/craft/web/index.php ]; then
   composer create-project -s RC craftcms/craft /vagrant/craft
-  # Set apache to use craft "web" folder
-  sudo rm -rf /var/www/html
-  sudo ln -fs /vagrant/craft/web /var/www/html
 fi
 
-# Craff setting adjustments
+# Set apache to use craft "web" folder
+if ! [ -L /var/www/html ]; then
+	sudo rm -rf /var/www/html
+	sudo ln -fs /vagrant/craft/web /var/www/html
+fi
+
+# Craft setting adjustments
 
 # Adjust local dev to use port number and set siteUrl
 sudo sed -i.bak "s/return \[/\/\/ Define URL settings to use port numbers for local development\ndefine('URI_PORT', (\$_SERVER['SERVER_PORT'] == '80') ? '' : ':' . \$_SERVER['SERVER_PORT']);\ndefine('SITE_URL', 'http:\/\/' . \$_SERVER['SERVER_NAME'] . URI_PORT . '\/');\n\nreturn [/" /vagrant/craft/config/general.php
