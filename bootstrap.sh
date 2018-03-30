@@ -57,6 +57,8 @@ sudo mv composer.phar /usr/bin/composer
 if ! [ -f /vagrant/craft/web/index.php ]; then
   composer create-project -s RC craftcms/craft /vagrant/craft
 
+  	# Set up database
+  	sudo /vagrant/craft/craft setup/db --interactive=0 --database=craft --password=password
 
 	# Craft adjustments, these are all optional
 	# First back up general config
