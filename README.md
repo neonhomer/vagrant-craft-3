@@ -1,8 +1,10 @@
 # Vagrant Craft 3
 
-Starter Craft CMS 3 setup using Vagrant for local development. Initial starter site url is http://localhost:8378. Depending on network environment the site should be accessible to other devices via [http://COMPUTER_NAME:8378](http://COMPUTER_NAME:8378).
+Starter Craft CMS 3 setup using Vagrant for local development. This setup uses a special port number to allow testing the site without modifying a hosts file. The site should be accessible to other devices on the same network.
 
-Vagrant settings support macOS and Windows. Virtual machine is running Ubuntu 16 with PHP 7.0. Port number can be changed as desired in the Vagrantfile. 
+Initial site url is http://localhost:8378. Or using the local computer name like [http://COMPUTER_NAME:8378](http://COMPUTER_NAME:8378). Port number is adjustable modified in the Vagrantfile.
+
+Vagrant settings support macOS and Windows. Virtual machine is running Ubuntu 16 with PHP 7.0. 
 
 Installation includes Xdebug for PHP debugging and Visual Studio Code launch.json.
 
@@ -18,13 +20,19 @@ Installation includes Xdebug for PHP debugging and Visual Studio Code launch.jso
 	1. If desired change port number in Vagrantfile
 1. Run `vagrant up`
 1. Go to http://localhost:8378/admin to finalize Craft installation
-   1. Enter database information, Password = **password** and Datbase Name = **craft**
    1. Create first admin account
    1. Enter site details, leaving Base URL = **@web**
 
-*\*Note: If cloned the .gitignore and .git files will need to be replaced.*
+**\*Note: Before starting an actual project the .gitignore and .git files will need to be replaced.**
 
 ## Changelog
+
+**2018-03-30**
+
+- Added PHP Intl module
+- Changed PHP memory limit to 256MB
+- Changed Craft setup to automatically apply database settings
+- Removed temporary index file as Craft now includes one
 
 **2018-03-27**
 
