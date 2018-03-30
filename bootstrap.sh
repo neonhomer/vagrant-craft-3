@@ -8,7 +8,7 @@ sudo apt-get update
 
 # Install Apache and PHP
 sudo apt-get install -y apache2 libapache2-mod-php
-sudo apt-get install -y php imagemagick php-imagick php-curl php-zip
+sudo apt-get install -y php imagemagick php-imagick php-curl php-zip php-intl
 
 # Install MySQL
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $DATABASE_PASSWORD"
@@ -34,6 +34,7 @@ sudo cp /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2/php.ini.bak
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.0/apache2/php.ini
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.0/apache2/php.ini
 sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 16M/" /etc/php/7.0/apache2/php.ini
+sudo sed -i "s/memory_limit = .*/memory_limit = 256M/" /etc/php/7.0/apache2/php.ini
 
 # Enable PHP Xdebug, log file is initially commented out
 sudo sed -i "$ a\ \n[Xdebug]\nxdebug.remote_enable = 1\nxdebug.remote_autostart = 1\nxdebug.remote_connect_back = 1\n; xdebug.remote_log = /vagrant/xdebug.log" /etc/php/7.0/apache2/php.ini
