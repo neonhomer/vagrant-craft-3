@@ -57,18 +57,12 @@ sudo mv composer.phar /usr/bin/composer
 if ! [ -f /vagrant/craft/web/index.php ]; then
   composer create-project -s RC craftcms/craft /vagrant/craft
 
-	# Craft adjustments
-	# These are all optional
 
+	# Craft adjustments, these are all optional
 	# First back up general config
 	sudo cp /vagrant/craft/config/general.php /vagrant/craft/config/general.php.bak
 	# Use email as username
 	sudo sed -i "s/'securityKey' => getenv('SECURITY_KEY'),/'securityKey' => getenv('SECURITY_KEY'),\n        'useEmailAsUsername' => true,/" /vagrant/craft/config/general.php
-	# Add index file if none exist
-	if ! [ -f /vagrant/craft/templates/index.twig ]; then
-		sudo touch /vagrant/craft/templates/index.twig
-		sudo printf "<html>\n<head></head>\n<body>\n{{ dump(_context) }}\n</body>\n</html>\n" > /vagrant/craft/templates/index.twig
-	fi
 	echo "Customized Craft CMS"
 fi
 
